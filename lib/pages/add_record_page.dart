@@ -10,6 +10,7 @@ import '../repositories/record_repository.dart';
 import '../repositories/category_repository.dart';
 import '../repositories/reimbursement_repository.dart';
 import '../repositories/attachment_repository.dart';
+import '../services/ocr_service.dart';
 import '../widgets/category_selector.dart';
 import '../widgets/payment_selector.dart';
 
@@ -31,6 +32,7 @@ class _AddRecordPageState extends State<AddRecordPage> {
   final _categoryRepo = CategoryRepository();
   final _reimbRepo = ReimbursementRepository();
   final _attachmentRepo = AttachmentRepository();
+  final _ocrService = OcrService();
   final _picker = ImagePicker();
 
   List<Category> _parentCategories = [];
@@ -53,6 +55,7 @@ class _AddRecordPageState extends State<AddRecordPage> {
     if (_isEditing) _fillExistingRecord();
     if (widget.initialScreenshot != null) {
       _screenshotFile = widget.initialScreenshot;
+      _processOcr(_screenshotFile!);
     }
   }
 
@@ -100,6 +103,36 @@ class _AddRecordPageState extends State<AddRecordPage> {
     final picked = await _picker.pickImage(source: source);
     if (picked != null) {
       setState(() => _screenshotFile = File(picked.path));
+      _processOcr(_screenshotFile!);
+    }
+  }
+
+  Future<void> _processOcr(File image) async {
+    try {
+      final result = await _ocrService.recognize(image);
+      if (result.amount != null) {
+        _amountController.text = result.amount!.toStringAsFixed(2);
+      }
+      if (result.datetime != null) {
+        _datetime = result.datetime!;
+      }
+      if (result.payment != null) {
+        _payment = result.payment!;
+      }
+      if (result.merchant != null && _noteController.text.isEmpty) {
+        _noteController.text = result.merchant!;
+      }
+      if (result.category != null) {
+        for (final p in _parentCategories) {
+          if (p.name == result.category) {
+            _selectedParentId = p.id;
+            break;
+          }
+        }
+      }
+      setState(() {});
+    } catch (e) {
+      // Tesseract OCR may fail if traineddata is missing
     }
   }
 
@@ -165,6 +198,7 @@ class _AddRecordPageState extends State<AddRecordPage> {
   void dispose() {
     _amountController.dispose();
     _noteController.dispose();
+    _ocrService.dispose();
     super.dispose();
   }
 
