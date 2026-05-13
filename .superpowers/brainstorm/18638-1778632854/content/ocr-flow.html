@@ -1,0 +1,56 @@
+<h2>截图识别流程</h2>
+<p class="subtitle">两种触发方式 → OCR识别 → 确认保存</p>
+
+<div class="section" style="max-width: 600px; margin: 0 auto;">
+
+  <!-- 触发方式 -->
+  <div style="display: flex; gap: 16px; margin-bottom: 20px;">
+    <div style="flex:1; border: 1px solid #e0e0e0; border-radius: 10px; padding: 14px; text-align: center;">
+      <div style="font-size: 24px; margin-bottom: 6px;">📸</div>
+      <div style="font-weight: bold; font-size: 14px;">方式 A：自动监听</div>
+      <div style="font-size: 12px; color: #666; margin-top: 4px;">在 App 内截图 → 自动弹出"是否识别"</div>
+    </div>
+    <div style="flex:1; border: 1px solid #e0e0e0; border-radius: 10px; padding: 14px; text-align: center;">
+      <div style="font-size: 24px; margin-bottom: 6px;">🖼️</div>
+      <div style="font-weight: bold; font-size: 14px;">方式 B：从相册选</div>
+      <div style="font-size: 12px; color: #666; margin-top: 4px;">记一笔 → 点"添加截图" → 从相册选取</div>
+    </div>
+  </div>
+
+  <!-- 识别过程 -->
+  <div style="background: #f5f5f5; border-radius: 10px; padding: 16px; margin-bottom: 16px;">
+    <div style="font-weight: bold; margin-bottom: 10px;">识别的信息</div>
+    <table style="width: 100%; font-size: 13px;">
+      <tr><td style="padding: 4px 0;">金额</td><td style="color: #2e7d32;">¥35.00  ← "实付 ¥35.00" 提取</td></tr>
+      <tr><td style="padding: 4px 0;">时间</td><td style="color: #2e7d32;">2026-05-13 12:30  ← 支付时间提取</td></tr>
+      <tr><td style="padding: 4px 0;">商户</td><td style="color: #666;">→ 填入备注"沙县小吃"</td></tr>
+      <tr><td style="padding: 4px 0;">类别</td><td style="color: #666;">→ 根据关键词"午餐"自动匹配到🍜餐饮</td></tr>
+    </table>
+    <div style="font-size: 11px; color: #999; margin-top: 8px; padding: 6px; background: #fff; border-radius: 6px;">
+      ⚡ 只需确认即可保存，不准确的地方手动改一下
+    </div>
+  </div>
+
+  <!-- 对比：截图 vs 手动 -->
+  <div style="display: flex; gap: 16px;">
+    <div style="flex:1; border: 1px solid #e0e0e0; border-radius: 10px; padding: 14px;">
+      <div style="font-weight: bold; font-size: 13px; margin-bottom: 8px;">📱 截图识别后</div>
+      <div style="font-size: 12px;">金额 <span style="color: #2e7d32;">已填</span></div>
+      <div style="font-size: 12px;">类别 <span style="color: #ff9800;">需确认</span></div>
+      <div style="font-size: 12px;">时间 <span style="color: #2e7d32;">已填</span></div>
+      <div style="font-size: 12px;">备注 <span style="color: #2e7d32;">已填</span></div>
+      <div style="font-size: 12px;">支付方式 <span style="color: #ff9800;">需确认</span></div>
+      <div style="font-size: 12px;">截图 <span style="color: #2e7d32;">已关联</span></div>
+    </div>
+    <div style="flex:1; border: 1px solid #e0e0e0; border-radius: 10px; padding: 14px;">
+      <div style="font-weight: bold; font-size: 13px; margin-bottom: 8px;">✍️ 手动记账</div>
+      <div style="font-size: 12px;">金额 <span style="color: #999;">手动填</span></div>
+      <div style="font-size: 12px;">类别 <span style="color: #999;">手动选</span></div>
+      <div style="font-size: 12px;">时间 <span style="color: #2e7d32;">默认当前</span></div>
+      <div style="font-size: 12px;">备注 <span style="color: #999;">手动填</span></div>
+      <div style="font-size: 12px;">支付方式 <span style="color: #999;">手动选</span></div>
+      <div style="font-size: 12px;">截图 <span style="color: #999;">可选添加</span></div>
+    </div>
+  </div>
+
+</div>

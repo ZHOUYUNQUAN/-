@@ -1,0 +1,89 @@
+<h2>记账页面 vs 首页</h2>
+<p class="subtitle">两个页面的定位不同</p>
+
+<div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+
+  <!-- 首页 -->
+  <div class="mockup" style="max-width: 300px; flex: 1;">
+    <div class="mockup-header">🏠 首页 · 概览</div>
+    <div class="mockup-body" style="padding: 12px; font-size: 13px;">
+      <div style="display: flex; gap: 6px;">
+        <div style="flex:1; background: #e8f5e9; border-radius: 6px; padding: 10px; text-align: center;">
+          <div style="font-size: 16px; font-weight: bold;">¥3,280</div>
+          <div style="font-size: 10px; color: #666;">本月支出</div>
+        </div>
+        <div style="flex:1; background: #fff3e0; border-radius: 6px; padding: 10px; text-align: center;">
+          <div style="font-size: 16px; font-weight: bold;">¥860</div>
+          <div style="font-size: 10px; color: #666;">待报销</div>
+        </div>
+      </div>
+      <div style="margin-top: 10px;">
+        <div style="font-size: 11px; font-weight: bold; margin-bottom: 4px;">最近支出</div>
+        <div style="display: flex; justify-content: space-between; padding: 4px 0;">🍜 午餐 <span style="color:#e53935;">-¥35</span></div>
+        <div style="display: flex; justify-content: space-between; padding: 4px 0;">🚕 打车 <span style="color:#e53935;">-¥28</span></div>
+      </div>
+      <div style="text-align: center; margin-top: 10px;">
+        <span style="background: #4CAF50; color: white; padding: 6px 18px; border-radius: 20px; font-size: 14px;">＋ 记一笔</span>
+      </div>
+      <div style="font-size: 10px; color: #999; text-align: center; margin-top: 6px; font-style: italic;">看一眼就知道这个月花了多少</div>
+    </div>
+  </div>
+
+  <!-- 记账页 -->
+  <div class="mockup" style="max-width: 300px; flex: 1;">
+    <div class="mockup-header">📋 记账 · 全部记录</div>
+    <div class="mockup-body" style="padding: 12px; font-size: 13px;">
+      <!-- 筛选栏 -->
+      <div style="display: flex; gap: 4px; margin-bottom: 8px;">
+        <span style="background: #e0e0e0; padding: 2px 8px; border-radius: 12px; font-size: 11px;">全部</span>
+        <span style="background: #e0e0e0; padding: 2px 8px; border-radius: 12px; font-size: 11px;">本月</span>
+        <span style="background: #e0e0e0; padding: 2px 8px; border-radius: 12px; font-size: 11px;">餐饮</span>
+      </div>
+
+      <!-- 日期分组 -->
+      <div style="font-size: 12px; font-weight: bold; color: #666; margin: 8px 0 4px;">5月12日 周六</div>
+
+      <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #f0f0f0;">
+        <div>
+          <div style="font-weight: bold;">🍜 午餐</div>
+          <div style="font-size: 10px; color: #999;">微信 · 备注...</div>
+        </div>
+        <div style="text-align: right;">
+          <div style="color:#e53935;">-¥35</div>
+          <div style="font-size: 10px; color: #999;">📎 有截图</div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #f0f0f0;">
+        <div>
+          <div style="font-weight: bold;">🚕 打车</div>
+          <div style="font-size: 10px; color: #999;">支付宝</div>
+        </div>
+        <div style="text-align: right;">
+          <div style="color:#e53935;">-¥28</div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; padding: 6px 0;">
+        <div>
+          <div style="font-weight: bold;">🛒 办公用品</div>
+          <div style="font-size: 10px; color: #f57c00;">🔄 待报销</div>
+        </div>
+        <div style="text-align: right;">
+          <div style="color:#e53935;">-¥156</div>
+          <div style="font-size: 10px; color: #999;">📎 有截图</div>
+        </div>
+      </div>
+
+      <div style="font-size: 10px; color: #999; text-align: center; margin-top: 6px; font-style: italic;">查看、筛选、管理所有支出记录</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="section" style="margin-top: 16px; padding: 12px; background: #f5f5f5; border-radius: 8px; font-size: 13px;">
+  <strong>📌 说明</strong><br>
+  <strong>首页</strong>：看一眼就知道本月花了多少，有多少在等报销<br>
+  <strong>记账页</strong>：查明细、筛选、管理所有记录<br>
+  <strong>＋记一笔</strong>：两页都有这个按钮，弹出新增表单来录入
+</div>

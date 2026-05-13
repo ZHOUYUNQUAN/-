@@ -1,0 +1,83 @@
+<h2>新增记账页面</h2>
+<p class="subtitle">点"＋记一笔"后弹出的表单</p>
+
+<div class="mockup" style="max-width: 380px; margin: 0 auto;">
+  <div class="mockup-header">📝 记一笔</div>
+  <div class="mockup-body" style="padding: 16px;">
+
+    <!-- 金额输入 -->
+    <div class="section">
+      <div class="label">金额</div>
+      <div style="font-size: 32px; font-weight: bold; color: #333; border-bottom: 2px solid #4CAF50; padding: 4px 0;">
+        ¥ <span style="color: #999;">0.00</span>
+      </div>
+    </div>
+
+    <!-- 类别选择 -->
+    <div class="section">
+      <div class="label">类别</div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px;">
+        <span style="padding: 6px 14px; border: 2px solid #4CAF50; border-radius: 20px; font-size: 14px; font-weight: bold; color: #4CAF50;">🍜 餐饮</span>
+        <span style="padding: 6px 14px; border: 1px solid #ddd; border-radius: 20px; font-size: 14px;">🚗 交通</span>
+        <span style="padding: 6px 14px; border: 1px solid #ddd; border-radius: 20px; font-size: 14px;">🛒 购物</span>
+        <span style="padding: 6px 14px; border: 1px solid #ddd; border-radius: 20px; font-size: 14px;">🏠 居住</span>
+        <span style="padding: 6px 14px; border: 1px solid #ddd; border-radius: 20px; font-size: 14px;">⋯</span>
+      </div>
+      <!-- 子类别 -->
+      <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; padding-left: 8px;">
+        <span style="padding: 4px 10px; background: #e8f5e9; border-radius: 12px; font-size: 12px; color: #2e7d32;">午餐</span>
+        <span style="padding: 4px 10px; background: #e8f5e9; border-radius: 12px; font-size: 12px; color: #2e7d32;">晚餐</span>
+        <span style="padding: 4px 10px; background: #f5f5f5; border-radius: 12px; font-size: 12px;">早餐</span>
+        <span style="padding: 4px 10px; background: #f5f5f5; border-radius: 12px; font-size: 12px;">饮料零食</span>
+      </div>
+    </div>
+
+    <!-- 支付方式 -->
+    <div class="section">
+      <div class="label">支付方式</div>
+      <div style="display: flex; gap: 8px; margin-top: 6px;">
+        <span style="padding: 6px 14px; border: 1px solid #ddd; border-radius: 20px; font-size: 14px;">💳 微信</span>
+        <span style="padding: 6px 14px; border: 1px solid #ddd; border-radius: 20px; font-size: 14px;">💳 支付宝</span>
+        <span style="padding: 6px 14px; border: 1px solid #ddd; border-radius: 20px; font-size: 14px;">💵 现金</span>
+        <span style="padding: 6px 14px; border: 1px solid #ddd; border-radius: 20px; font-size: 14px;">💳 银行卡</span>
+      </div>
+    </div>
+
+    <!-- 日期时间 -->
+    <div class="section">
+      <div class="label">时间</div>
+      <div style="display: flex; gap: 8px; margin-top: 6px;">
+        <span style="padding: 6px 14px; background: #f5f5f5; border-radius: 8px; font-size: 14px;">📅 2026-05-13</span>
+        <span style="padding: 6px 14px; background: #f5f5f5; border-radius: 8px; font-size: 14px;">⏰ 12:30</span>
+      </div>
+    </div>
+
+    <!-- 备注 -->
+    <div class="section">
+      <div class="label">备注</div>
+      <input class="mock-input" placeholder="输入备注..." style="width: 100%; margin-top: 4px;">
+    </div>
+
+    <!-- 截图 & 报销开关 -->
+    <div class="section" style="display: flex; justify-content: space-between; gap: 12px;">
+      <div style="flex:1; text-align: center; padding: 10px; border: 1px dashed #ccc; border-radius: 8px;">
+        <div>📷</div>
+        <div style="font-size: 12px;">添加截图</div>
+      </div>
+      <div style="flex:1; display: flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid #f0f0f0; border-radius: 8px; padding: 10px;">
+        <span>🔄</span>
+        <span style="font-size: 13px;">待报销</span>
+        <label style="display: inline-block; width: 36px; height: 20px; background: #4CAF50; border-radius: 10px; position: relative;">
+          <span style="display: inline-block; width: 16px; height: 16px; background: white; border-radius: 50%; position: absolute; right: 2px; top: 2px;"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- 保存按钮 -->
+    <button class="mock-button" style="width: 100%; background: #4CAF50; color: white; padding: 14px; border: none; border-radius: 12px; font-size: 16px; margin-top: 12px;">保存</button>
+
+    <div style="font-size: 11px; color: #999; margin-top: 10px; padding: 8px; background: #f5f5f5; border-radius: 6px;">
+      💡 截图识别后自动填入金额/类别/时间，手动微调后保存
+    </div>
+  </div>
+</div>
