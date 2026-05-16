@@ -39,42 +39,46 @@ class _ReportPageState extends State<ReportPage> {
   }
 
   Future<void> _loadData() async {
-    final year = _currentMonth.year;
-    final month = _currentMonth.month;
+    try {
+      final year = _currentMonth.year;
+      final month = _currentMonth.month;
 
-    final records = await _recordRepo.getByMonth(year, month);
-    final categories = await _categoryRepo.getAll();
-    final categoryMap = <int, Category>{};
-    for (final c in categories) {
-      if (c.id != null) categoryMap[c.id!] = c;
+      final records = await _recordRepo.getByMonth(year, month);
+      final categories = await _categoryRepo.getAll();
+      final categoryMap = <int, Category>{};
+      for (final c in categories) {
+        if (c.id != null) categoryMap[c.id!] = c;
+      }
+      final pendingTotal = await _reimbRepo.getPendingTotal();
+
+      final catTotals = <int, double>{};
+      final payTotals = <String, double>{};
+
+      for (final record in records) {
+        final cat = categoryMap[record.categoryId];
+        final parentId = cat?.parentId ?? record.categoryId;
+        catTotals[parentId] = (catTotals[parentId] ?? 0) + record.amount;
+        payTotals[record.payment] =
+            (payTotals[record.payment] ?? 0) + record.amount;
+      }
+
+      final sortedCats = catTotals.entries.toList()
+        ..sort((a, b) => b.value.compareTo(a.value));
+
+      setState(() {
+        _monthTotal = records.fold(0.0, (sum, r) => sum + r.amount);
+        _recordCount = records.length;
+        _pendingTotal = pendingTotal;
+        _categoryTotals = sortedCats.map((e) {
+          final cat = categoryMap[e.key]!;
+          return _CategoryTotal(category: cat, total: e.value);
+        }).toList();
+        _paymentTotals = payTotals;
+        _loading = false;
+      });
+    } catch (e) {
+      setState(() => _loading = false);
     }
-    final pendingTotal = await _reimbRepo.getPendingTotal();
-
-    final catTotals = <int, double>{};
-    final payTotals = <String, double>{};
-
-    for (final record in records) {
-      final cat = categoryMap[record.categoryId];
-      final parentId = cat?.parentId ?? record.categoryId;
-      catTotals[parentId] = (catTotals[parentId] ?? 0) + record.amount;
-      payTotals[record.payment] =
-          (payTotals[record.payment] ?? 0) + record.amount;
-    }
-
-    final sortedCats = catTotals.entries.toList()
-      ..sort((a, b) => b.value.compareTo(a.value));
-
-    setState(() {
-      _monthTotal = records.fold(0.0, (sum, r) => sum + r.amount);
-      _recordCount = records.length;
-      _pendingTotal = pendingTotal;
-      _categoryTotals = sortedCats.map((e) {
-        final cat = categoryMap[e.key]!;
-        return _CategoryTotal(category: cat, total: e.value);
-      }).toList();
-      _paymentTotals = payTotals;
-      _loading = false;
-    });
   }
 
   void _previousMonth() {

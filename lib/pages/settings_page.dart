@@ -28,11 +28,15 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   Future<void> _loadCategories() async {
-    final cats = await _categoryRepo.getAll();
-    setState(() {
-      _categories = cats;
-      _loading = false;
-    });
+    try {
+      final cats = await _categoryRepo.getAll();
+      setState(() {
+        _categories = cats;
+        _loading = false;
+      });
+    } catch (e) {
+      setState(() => _loading = false);
+    }
   }
 
   Future<void> _export() async {

@@ -34,19 +34,23 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> _loadData() async {
-    final now = DateTime.now();
-    final records = await _recordRepo.getByMonth(now.year, now.month);
-    final categories = await _categoryRepo.getAll();
-    final pendingTotal = await _reimbRepo.getPendingTotal();
-    final monthTotal = records.fold(0.0, (sum, r) => sum + r.amount);
+    try {
+      final now = DateTime.now();
+      final records = await _recordRepo.getByMonth(now.year, now.month);
+      final categories = await _categoryRepo.getAll();
+      final pendingTotal = await _reimbRepo.getPendingTotal();
+      final monthTotal = records.fold(0.0, (sum, r) => sum + r.amount);
 
-    setState(() {
-      _monthTotal = monthTotal;
-      _pendingTotal = pendingTotal;
-      _recentRecords = records.take(10).toList();
-      _categoryMap = {for (final c in categories) if (c.id != null) c.id!: c};
-      _loading = false;
-    });
+      setState(() {
+        _monthTotal = monthTotal;
+        _pendingTotal = pendingTotal;
+        _recentRecords = records.take(10).toList();
+        _categoryMap = {for (final c in categories) if (c.id != null) c.id!: c};
+        _loading = false;
+      });
+    } catch (e) {
+      setState(() => _loading = false);
+    }
   }
 
   String _getCategoryName(int id) {
