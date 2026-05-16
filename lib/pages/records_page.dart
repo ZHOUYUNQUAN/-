@@ -37,24 +37,28 @@ class _RecordsPageState extends State<RecordsPage> {
   }
 
   Future<void> _loadData() async {
-    final parts = _selectedMonth.split('-');
-    final year = int.parse(parts[0]);
-    final month = int.parse(parts[1]);
+    try {
+      final parts = _selectedMonth.split('-');
+      final year = int.parse(parts[0]);
+      final month = int.parse(parts[1]);
 
-    final records = await _recordRepo.getByMonth(year, month);
-    final categories = await _categoryRepo.getAll();
-    final reimbursements = await _reimbRepo.getAll();
-    final attachments = await _attachmentRepo.getAll();
+      final records = await _recordRepo.getByMonth(year, month);
+      final categories = await _categoryRepo.getAll();
+      final reimbursements = await _reimbRepo.getAll();
+      final attachments = await _attachmentRepo.getAll();
 
-    setState(() {
-      _records = records;
-      _categoryMap = {
-        for (final c in categories) if (c.id != null) c.id!: c
-      };
-      _reimbRecordIds = reimbursements.map((r) => r.recordId).toSet();
-      _attachmentRecordIds = attachments.map((a) => a.recordId).toSet();
-      _loading = false;
-    });
+      setState(() {
+        _records = records;
+        _categoryMap = {
+          for (final c in categories) if (c.id != null) c.id!: c
+        };
+        _reimbRecordIds = reimbursements.map((r) => r.recordId).toSet();
+        _attachmentRecordIds = attachments.map((a) => a.recordId).toSet();
+        _loading = false;
+      });
+    } catch (e) {
+      setState(() => _loading = false);
+    }
   }
 
   String _getCategoryName(int id) {

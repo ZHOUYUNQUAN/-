@@ -7,11 +7,19 @@ class DatabaseHelper {
   DatabaseHelper._internal();
 
   static Database? _database;
+  static Future<Database>? _initFuture;
 
   Future<Database> get database async {
     if (_database != null) return _database!;
-    _database = await _initDatabase();
-    return _database!;
+    // Prevent concurrent initialization
+    if (_initFuture != null) return _initFuture!;
+    _initFuture = _initDatabase();
+    try {
+      _database = await _initFuture;
+      return _database!;
+    } finally {
+      _initFuture = null;
+    }
   }
 
   Future<Database> _initDatabase() async {
